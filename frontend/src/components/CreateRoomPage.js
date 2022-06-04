@@ -10,8 +10,6 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
-
-
 export default class CreateRoomPage extends Component {
 
   defaultVotes = 2;
@@ -28,6 +26,7 @@ export default class CreateRoomPage extends Component {
             Create a Room
           </Typography>
         </Grid>
+
         <Grid item xs={12} align="center">
           <FormControl component="fieldset">
             <FormHelperText>
@@ -49,27 +48,37 @@ export default class CreateRoomPage extends Component {
               />
             </RadioGroup>
           </FormControl>
-          <Grid item xs={12} align="center">
-            <FormControl>
-              <TextField 
-                required={true} 
-                type="number" 
-                defaultValue={this.defaultVotes}
-                inputProps={{
-                  min: 1,
-                  style: { textAlign: "center"},
-                }}
-              />
-              <FormHelperText>
-                <div align="center">
-                  Votes Required to Skip Song
-                </div>
-              </FormHelperText>
-
-            </FormControl>
-          </Grid>
         </Grid>
+
+        <Grid item xs={12} align="center">
+          <FormControl>
+            <TextField 
+              required={true} 
+              type="number" 
+              defaultValue={this.defaultVotes}
+              inputProps={{
+                min: 1,
+                style: { textAlign: "center"},
+              }}
+            />
+            <FormHelperText>
+              <div align="center">
+                Votes Required to Skip Song
+              </div>
+            </FormHelperText>
+
+          </FormControl>
+        </Grid>
+          
+        <Grid item xs={12} align="center">
+          <Button color="primary" variant="contained">Create A Room</Button>
+        </Grid>
+
+        <Grid item xs={12} align="center">
+          <Button color="secondary" variant="contained" to="/" component={Link}>Back</Button>
+        </Grid>
+
       </Grid>
-    ) ;
+    );
   }
 }
