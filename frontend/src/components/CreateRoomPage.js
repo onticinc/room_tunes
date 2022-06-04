@@ -34,9 +34,40 @@ export default class CreateRoomPage extends Component {
              <div align="center">Guest Control of Playback State</div>
             </FormHelperText>
             <RadioGroup row defaultValue='true'>
-              <FormLabelControl value="true" control={<Radio color="primary" />}/>
+              <FormControlLabel 
+                value="true" 
+                control={<Radio color="primary"/>}
+                label="Play/Pause"
+                labelPlacement="bottom"
+              />
+
+              <FormControlLabel 
+                value="false" 
+                control={<Radio color="secondary"/>}
+                label="No Control"
+                labelPlacement="bottom"
+              />
             </RadioGroup>
           </FormControl>
+          <Grid item xs={12} align="center">
+            <FormControl>
+              <TextField 
+                required={true} 
+                type="number" 
+                defaultValue={this.defaultVotes}
+                inputProps={{
+                  min: 1,
+                  style: { textAlign: "center"},
+                }}
+              />
+              <FormHelperText>
+                <div align="center">
+                  Votes Required to Skip Song
+                </div>
+              </FormHelperText>
+
+            </FormControl>
+          </Grid>
         </Grid>
       </Grid>
     ) ;
