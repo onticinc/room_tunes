@@ -102,7 +102,7 @@ class LeaveRoom(APIView):
         return Response({'Message': 'Success'}, status=status.HTTP_200_OK)
 
 class UpdateRoom(APIView):
-
+ 
     serializer_class= UpdateRoomSerializer
 
     def patch(self, request, format=None):
