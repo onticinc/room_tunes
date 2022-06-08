@@ -11,13 +11,19 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export default class CreateRoomPage extends Component {
-  defaultVotes = 2;
+  static defaultProps = {
+    votesToskip: 2, 
+    guestCanPause: true, 
+    update: false, 
+    roomCode: null, 
+    updateCallback: () => {},
+  }
 
   constructor(props) {
     super(props);
     this.state = {
-      guestCanPause: true,
-      votesToSkip: this.defaultVotes,
+      guestCanPause: this.props.guestCanPause,
+      votesToSkip: this.props.votesToSkip,
     };
 
     this.handleRoomButtonPressed = this.handleRoomButtonPressed.bind(this);
