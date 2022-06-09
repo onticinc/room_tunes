@@ -75,8 +75,21 @@ export default class CreateRoomPage extends Component {
           </Button>
         </Grid>
       </Grid>
-    )
+    );
+  }
 
+  renderUpdateButtons() {
+    return (
+      <Grid item xs={12} align="center">
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={this.handleRoomButtonPressed}
+        >
+          Update Room
+        </Button>
+      </Grid>
+     );
   }
 
   render() {
@@ -132,6 +145,10 @@ export default class CreateRoomPage extends Component {
             </FormHelperText>
           </FormControl>
         </Grid>
+        {this.props.update 
+          ? this.renderUpdateButtons()
+          : this. renderCreateButtons()
+        }
       </Grid>
     );
   }
