@@ -12,11 +12,11 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 export default class CreateRoomPage extends Component {
   static defaultProps = {
-    votesToskip: 2, 
-    guestCanPause: true, 
-    update: false, 
-    roomCode: null, 
-    updateCallback: () => {},
+    votesToskip: 2,
+    guestCanPause: true,
+    update: false,
+    roomCode: null,
+    updateCallback: () => { },
   }
 
   constructor(props) {
@@ -57,12 +57,37 @@ export default class CreateRoomPage extends Component {
       .then((data) => this.props.history.push('/room/' + data.code));
   }
 
+  renderCreateButtons() {
+    return (
+      <Grid container spacing={1}>
+        <Grid item xs={12} align="center">
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={this.handleRoomButtonPressed}
+          >
+            Create A Room
+          </Button>
+        </Grid>
+        <Grid item xs={12} align="center">
+          <Button color="secondary" variant="contained" to="/" component={Link}>
+            Back
+          </Button>
+        </Grid>
+      </Grid>
+    )
+
+  }
+
   render() {
+
+    const title = this.props.update ? "Update Room" : "Create a Room";
+
     return (
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <Typography component="h4" variant="h4">
-            Create A Room
+            {title}
           </Typography>
         </Grid>
         <Grid item xs={12} align="center">
@@ -96,7 +121,7 @@ export default class CreateRoomPage extends Component {
               required={true}
               type="number"
               onChange={this.handleVotesChange}
-              defaultValue={this.defaultVotes}
+              defaultValue={this.state.votesToSkip}
               inputProps={{
                 min: 1,
                 style: { textAlign: "center" },
@@ -106,20 +131,6 @@ export default class CreateRoomPage extends Component {
               <div align="center">Votes Required To Skip Song</div>
             </FormHelperText>
           </FormControl>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button
-            color="primary"
-            variant="contained"
-            onClick={this.handleRoomButtonPressed}
-          >
-            Create A Room
-          </Button>
-        </Grid>
-        <Grid item xs={12} align="center">
-          <Button color="secondary" variant="contained" to="/" component={Link}>
-            Back
-          </Button>
         </Grid>
       </Grid>
     );
