@@ -72,17 +72,18 @@ export default class CreateRoomPage extends Component {
         code: this.props.roomCode,
       }),
     };
-    fetch("/api/update-room", requestOptions).then((response) => {
-      if (response.ok) {
-        this.setState({
-          successMsg: "Room updated successfully!",
-        });
-      } else {
-        this.setState({
-          errorMsg: "Error updating room...",
-        });
-      }
-      this.props.updateCallback();
+    fetch("/api/update-room", requestOptions)
+      .then((response) => {
+        if (response.ok) {
+          this.setState({
+            successMsg: "Room updated successfully!",
+          });
+        } else {
+          this.setState({
+            errorMsg: "Error updating room...",
+          });
+        }
+        this.props.updateCallback();
     });
   }
 
