@@ -35,5 +35,7 @@ def spotify_callback(request, format=None):
     expires_in = response.get('expires_in')
     error = response.get('error')
 
+    
+
 
 
