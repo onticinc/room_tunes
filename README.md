@@ -1,4 +1,4 @@
 # room_tunes
 
-Current video:
-https://www.youtube.com/watch?v=YDgZd9i3le4&list=PLzMcBGfZo4-kCLWnGmK0jUBmGLaJxvi4j&index=12
+Current video and time:
+https://youtu.be/rYDDWVuv-kI?t=2043
