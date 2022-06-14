@@ -1,15 +1,17 @@
 from django.shortcuts import render, redirect
-
-from spotify.util import update_or_create_user_tokens
-from .credentials import REDIRECT_URI, CLIENT_ID, CLIENT_SECRET
+from .credentials import REDIRECT_URI, CLIENT_SECRET, CLIENT_ID
 from rest_framework.views import APIView
 from requests import Request, post
 from rest_framework import status
 from rest_framework.response import Response
+from .util import update_or_create_user_tokens, is_spotify_authenticated, get_user_tokens
+from api.models import Room
+
 
 class AuthURL(APIView):
-    def get(self, request, format=None):
+    def get(self, request, fornat=None):
         scopes = 'user-read-playback-state user-modify-playback-state user-read-currently-playing'
+
         url = Request('GET', 'https://accounts.spotify.com/authorize', params={
             'scope': scopes,
             'response_type': 'code',
@@ -19,13 +21,14 @@ class AuthURL(APIView):
 
         return Response({'url': url}, status=status.HTTP_200_OK)
 
+
 def spotify_callback(request, format=None):
     code = request.GET.get('code')
     error = request.GET.get('error')
 
-    response = post('https://acounts.spotify.com/api/token', data={
+    response = post('https://accounts.spotify.com/api/token', data={
         'grant_type': 'authorization_code',
-        'code': code, 
+        'code': code,
         'redirect_uri': REDIRECT_URI,
         'client_id': CLIENT_ID,
         'client_secret': CLIENT_SECRET
@@ -46,8 +49,8 @@ def spotify_callback(request, format=None):
     return redirect('frontend:')
 
 
-
-
-
-
-
+class IsAuthenticated(APIView):
+    def get(self, request, format=None):
+        is_authenticated = is_spotify_authenticated(
+            self.request.session.session_key)
+        return Response({'status': is_authenticated}, status=status.HTTP_200_OK)
